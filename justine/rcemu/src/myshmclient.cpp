@@ -341,7 +341,7 @@ void justine::sampleclient::MyShmClient::start10 ( boost::asio::io_service& io_s
 
   for ( ;; )
     {
-      gChased.clear();
+      std::vector<unsigned int> gChased;
       std::this_thread::sleep_for ( std::chrono::milliseconds ( 200 ) );
 
       for ( auto cop:cops )
@@ -361,11 +361,6 @@ void justine::sampleclient::MyShmClient::start10 ( boost::asio::io_service& io_s
                   break;
               }
           }
-
-          //if ( gngstrs.size() > 0 )
-            //g = gngstrs[0].to;
-          //else
-            //g = 0;
 
           if ( g > 0 )
             {
