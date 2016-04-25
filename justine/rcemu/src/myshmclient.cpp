@@ -341,7 +341,7 @@ void justine::sampleclient::MyShmClient::start10 ( boost::asio::io_service& io_s
 
   for ( ;; )
     {
-      std::vector<unsigned int> gChased;
+      std::vector<unsigned int> uldozott;
       std::this_thread::sleep_for ( std::chrono::milliseconds ( 200 ) );
 
       for ( auto cop:cops )
@@ -352,16 +352,31 @@ void justine::sampleclient::MyShmClient::start10 ( boost::asio::io_service& io_s
           
           g = 0;
 
-          for (size_t gi = 0; gi < gngstrs.size(); gi++) {
-              auto it = std::find(gChased.begin(), gChased.end(),
-                                  gngstrs[gi].to);
-              if (it == gChased.end()) {
-                  g = gngstrs[gi].to;
-                  gChased.push_back(gngstrs[gi].to);
+          // iteratorokkal
+
+          for (std::vector<Gangster>::iterator gi = gngsters.begin(); gi != gngstrs.end(); gi++) {
+              auto it = std::find(uldozott.begin(), uldozott.end(),
+                                  (*gi).to);
+              if (it == uldozott.end()) {
+                  g = (*gi).to;
+                  uldozott.push_back((*gi).to);
                   break;
               }
           }
 
+/*
+          // meret tipussal
+
+          for (std::vector<Gangster>::size_type gi = 0; gi < gngstrs.size(); gi++) {
+              auto it = std::find(uldozott.begin(), uldozott.end(),
+                                  gngstrs[gi].to);
+              if (it == uldozott.end()) {
+                  g = gngstrs[gi].to;
+                  uldozott.push_back(gngstrs[gi].to);
+                  break;
+              }
+          }
+*/
           if ( g > 0 )
             {
 
